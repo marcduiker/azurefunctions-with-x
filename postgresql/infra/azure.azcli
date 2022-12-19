@@ -1,0 +1,1 @@
+az group create --name azurefunctions-with-x-rg  --location westeurope --tags purpose=azurefunctions-with-x createdon=2022-12-19
