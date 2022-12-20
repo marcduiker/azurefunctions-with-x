@@ -25,16 +25,18 @@ namespace MovieApi
             var connectionString = Environment.GetEnvironmentVariable("PostgreSQLConnection");
             await using var conn = new NpgsqlConnection(connectionString);
             await conn.OpenAsync();
-            await using (var cmd = new NpgsqlCommand("SELECT * FROM Movies ORDER BY releaseyear LIMIT 10", conn))
+            await using (var cmd = new NpgsqlCommand("SELECT * FROM Movies ORDER BY release_year LIMIT 10", conn))
             await using (var reader = await cmd.ExecuteReaderAsync())
             {
                 while (await reader.ReadAsync())
                 {
-                    var movieName = reader.GetFieldValue<string>(0);
-                    var releaseYear = reader.GetFieldValue<int>(1);
+                    var id = reader.GetFieldValue<int>(0);
+                    var title = reader.GetFieldValue<string>(1);
+                    var releaseYear = reader.GetFieldValue<int>(2);
                     movies.Add(new Movie 
                     { 
-                        Name = movieName,
+                        Id = id,
+                        Title = title,
                         ReleaseYear = releaseYear 
                     });
                 }

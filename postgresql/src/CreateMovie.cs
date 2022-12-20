@@ -28,10 +28,10 @@ namespace MovieApi
                 await using var conn = new NpgsqlConnection(connectionString);
                 await conn.OpenAsync();
 
-                await using (var cmd = new NpgsqlCommand("INSERT INTO movies VALUES (@moviename, @releaseyear)", conn))
+                await using (var cmd = new NpgsqlCommand("INSERT INTO movies (title, release_year) VALUES (@title, @release_year)", conn))
                 {
-                    cmd.Parameters.AddWithValue("moviename",movie.Name);
-                    cmd.Parameters.AddWithValue("releaseyear", movie.ReleaseYear);
+                    cmd.Parameters.AddWithValue("title",movie.Title);
+                    cmd.Parameters.AddWithValue("release_year", movie.ReleaseYear);
                     await cmd.ExecuteNonQueryAsync();
                 }
                 response.StatusCode = HttpStatusCode.Accepted;
