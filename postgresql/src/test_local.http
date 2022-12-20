@@ -2,7 +2,7 @@ POST http://localhost:7071/api/CreateMovie
 Content-Type: application/json
 
 {
-    "name": "The Lion King",
+    "title": "The Lion King",
     "releaseyear": 1994
 }
 

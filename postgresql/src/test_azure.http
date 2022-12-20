@@ -1,0 +1,10 @@
+POST https://movieapi-fa.azurewebsites.net/api/createmovie?code={{createMovieFunctionKey}}}
+Content-Type: application/json
+
+{
+    "title": "Toy Story",
+    "releaseyear": 1995
+}
+
+###
+GET https://movieapi-fa.azurewebsites.net/api/listmovies?code={{listMoviesFunctionKey}}
